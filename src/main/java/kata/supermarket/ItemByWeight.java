@@ -20,4 +20,10 @@ public class ItemByWeight implements Item {
     public ProductType productType() {
         return weighedProduct.productType;
     }
+
+    @Override
+    public int compareTo(Item o) {
+        return price().compareTo(o.price());
+    }
+
 }
