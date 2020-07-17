@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class ItemByUnit implements Item {
 
-    private final Product product;
+    private final StandardProduct product;
 
-    ItemByUnit(final Product product) {
+    ItemByUnit(final StandardProduct product) {
         this.product = product;
     }
 
