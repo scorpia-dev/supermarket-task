@@ -32,13 +32,6 @@ public final class DiscountsChecker {
         discountsOnProductType.put(productType, discountType);
     }
 
-    public Set<DiscountType> getCurrentDiscountTypesOnItems() {
-        Set<DiscountType> activeDiscountTypes = new HashSet<>();
-        activeDiscountTypes.addAll(discountOnIndividualProducts.values());
-        activeDiscountTypes.addAll(discountsOnProductType.values());
-        return activeDiscountTypes;
-    }
-
     private Map<Item, DiscountType> getDiscountOnIndividualProducts() {
         return discountOnIndividualProducts;
     }

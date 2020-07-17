@@ -14,6 +14,7 @@ public class DiscountService {
     }
 
     public BigDecimal getDiscount(List<Item> items) {
+
         Discount buyOneGetOneFree = new BuyOneGetOneFree(discountChecker);
 
         BigDecimal sum = new BigDecimal(0);
