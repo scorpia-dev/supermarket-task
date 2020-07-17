@@ -14,13 +14,12 @@ public class DiscountService {
     }
 
     public BigDecimal getDiscount(List<Item> items) {
-
         Discount buyOneGetOneFree = new BuyOneGetOneFree(discountChecker);
 
         BigDecimal sum = new BigDecimal(0);
 
-            List<Item> discountItems = buyOneGetOneFree.getItemsEligibleForDiscount(items);
-            sum = sum.add(buyOneGetOneFree.getDiscount(discountItems));
+        List<Item> discountItems = buyOneGetOneFree.getItemsEligibleForDiscount(items);
+        sum = sum.add(buyOneGetOneFree.getDiscount(discountItems));
 
         return sum;
     }

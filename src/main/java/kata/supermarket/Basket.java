@@ -18,6 +18,7 @@ public class Basket {
         this.discountService = new DiscountService(discountsChecker);
         this.items = new ArrayList<>();
     }
+
     public void add(final Item item) {
         this.items.add(item);
     }
@@ -46,14 +47,14 @@ public class Basket {
 
         /**
          * TODO: This could be a good place to apply the results of
-         *  the discount calculations.
-         *  It is not likely to be the best place to do those calculations.
-         *  Think about how Basket could interact with something
-         *  which provides that functionality.
+         * the discount calculations.
+         * It is not likely to be the best place to do those calculations.
+         * Think about how Basket could interact with something
+         * which provides that functionality.
          */
         private BigDecimal discounts() {
-          return discountService.getDiscount(items);
-           // return BigDecimal.ZERO;
+            return discountService.getDiscount(items);
+            // return BigDecimal.ZERO;
         }
 
         private BigDecimal calculate() {

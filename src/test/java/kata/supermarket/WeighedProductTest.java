@@ -11,14 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WeighedProductTest {
 
-    @ParameterizedTest
-    @MethodSource
-    void itemFromWeighedProductHasExpectedUnitPrice(String pricePerKilo, String weightInKilos, String expectedPrice) {
-        final WeighedProduct weighedProduct = new WeighedProduct(new BigDecimal(pricePerKilo), ProductType.VEGETABLES);
-        final Item weighedItem = weighedProduct.weighing(new BigDecimal(weightInKilos));
-        assertEquals(new BigDecimal(expectedPrice), weighedItem.price());
-    }
-
     static Stream<Arguments> itemFromWeighedProductHasExpectedUnitPrice() {
         return Stream.of(
                 Arguments.of("100.00", "1.00", "100.00"),
@@ -26,6 +18,14 @@ class WeighedProductTest {
                 Arguments.of("100.00", "0.33335", "33.34"),
                 Arguments.of("100.00", "0", "0.00")
         );
+    }
+
+    @ParameterizedTest
+    @MethodSource
+    void itemFromWeighedProductHasExpectedUnitPrice(String pricePerKilo, String weightInKilos, String expectedPrice) {
+        final WeighedProduct weighedProduct = new WeighedProduct(new BigDecimal(pricePerKilo), ProductType.VEGETABLES);
+        final Item weighedItem = weighedProduct.weighing(new BigDecimal(weightInKilos));
+        assertEquals(new BigDecimal(expectedPrice), weighedItem.price());
     }
 
 }
