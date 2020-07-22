@@ -2,6 +2,7 @@ package kata.supermarket;
 
 import kata.discount.DiscountService;
 import kata.discount.DiscountsChecker;
+import kata.discount.IDiscount;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,8 +15,8 @@ public class Basket {
 
     DiscountService discountService;
 
-    public Basket(DiscountsChecker discountsChecker) {
-        this.discountService = new DiscountService(discountsChecker);
+    public Basket(DiscountsChecker discountsChecker, IDiscount discount) {
+        this.discountService = new DiscountService(discountsChecker, discount);
         this.items = new ArrayList<>();
     }
 

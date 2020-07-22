@@ -1,6 +1,8 @@
 package kata.supermarket;
 
+import kata.discount.Bogof;
 import kata.discount.DiscountsChecker;
+import kata.discount.IDiscount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class BasketTest {
 
     static DiscountsChecker noDiscounts = new DiscountsChecker();
+    IDiscount discount = new Bogof();
 
     static Stream<Arguments> basketProvidesTotalValue() {
         return Stream.of(
@@ -106,7 +109,7 @@ class BasketTest {
     @ParameterizedTest(name = "{0}")
     void basketProvidesTotalValue(String description, String expectedTotal, Iterable<Item> items, DiscountsChecker discountsChecker
             , String expectedDiscount) {
-        final Basket basket = new Basket(discountsChecker);
+        final Basket basket = new Basket(discountsChecker, discount);
         items.forEach(basket::add);
         assertEquals(new BigDecimal(expectedTotal), basket.total());
     }

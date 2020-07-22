@@ -8,19 +8,18 @@ import java.util.List;
 public class DiscountService {
 
     private final DiscountsChecker discountChecker;
+    private final IDiscount discount;
 
-    public DiscountService(DiscountsChecker discountChecker) {
+    public DiscountService(DiscountsChecker discountChecker, IDiscount discount) {
+        this.discount = discount;
         this.discountChecker = discountChecker;
     }
 
     public BigDecimal getDiscount(List<Item> items) {
 
-        Discount buyOneGetOneFree = new BuyOneGetOneFree(discountChecker);
-
         BigDecimal sum = new BigDecimal(0);
-
-        List<Item> discountItems = buyOneGetOneFree.getItemsEligibleForDiscount(items);
-        sum = sum.add(buyOneGetOneFree.getDiscount(discountItems));
+        List<Item> discountItems = discount.getItemsEligibleForDiscount(items, discountChecker);
+        sum = sum.add(discount.getDiscount(discountItems));
 
         return sum;
     }

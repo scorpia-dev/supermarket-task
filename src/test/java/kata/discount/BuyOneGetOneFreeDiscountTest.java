@@ -19,7 +19,7 @@ public class BuyOneGetOneFreeDiscountTest {
     Item item5 = new WeighedProduct(new BigDecimal("6.99"), ProductType.MEAT).weighing(new BigDecimal("1.00"));
 
     List<Item> basket = Arrays.asList(item1, item2, item3, item4, item5);
-    Discount buyOneGetOneFree = new BuyOneGetOneFree(discountsChecker);
+    IDiscount buyOneGetOneFree = new Bogof();
 
     @Test
     void buyOneGetOneFreeStandardProductTest() {
@@ -27,7 +27,7 @@ public class BuyOneGetOneFreeDiscountTest {
         discountsChecker.addDiscountToIndividualProduct(item1, DiscountType.BOGOF);
         discountsChecker.addDiscountToIndividualProduct(item2, DiscountType.TWO_FOR_ONE_POUND);
 
-        List<Item> itemsInBogofOffer = buyOneGetOneFree.getItemsEligibleForDiscount(basket);
+        List<Item> itemsInBogofOffer = buyOneGetOneFree.getItemsEligibleForDiscount(basket, discountsChecker);
         assertEquals(3, itemsInBogofOffer.size());
 
         BigDecimal discount = buyOneGetOneFree.getDiscount(itemsInBogofOffer);
@@ -38,7 +38,7 @@ public class BuyOneGetOneFreeDiscountTest {
     @Test
     void buyOneGetOneFreeWeighedProductsTest() {
         discountsChecker.addDiscountToProductType(ProductType.MEAT, DiscountType.BOGOF);
-        List<Item> itemsInBogofOffer = buyOneGetOneFree.getItemsEligibleForDiscount(basket);
+        List<Item> itemsInBogofOffer = buyOneGetOneFree.getItemsEligibleForDiscount(basket, discountsChecker);
         assertEquals(2, itemsInBogofOffer.size());
 
         BigDecimal discount = buyOneGetOneFree.getDiscount(itemsInBogofOffer);
